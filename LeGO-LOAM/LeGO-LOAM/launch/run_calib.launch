@@ -1,0 +1,30 @@
+<launch>
+
+    <!-- args -->
+    <arg name="lidar" default="top" />     
+    <arg name="sub_lidar_topic" default="/$(arg lidar)/rslidar_points_non_vehicle" />
+
+    <!--- Sim Time -->
+    <param name="/use_sim_time" value="true" />
+
+    <!-- Ros Bag -->
+    <node pkg="rosbag" type="play" name="rosbag" 
+        args="--clock --pause -r 2 /Monster/dataset/lidar_calibration/yellow_lidar_calibration_20190104/motion_based/8_shape_filter.bag" output="screen"/> 
+	<!-- /Monster/dataset/lidar_calibration/yellow_lidar_calibration_20190104/motion_based/eclipse_filter.bag -->
+	
+    <!-- Range Filter -->
+    <include file="$(find range_filter)/launch/yellow_filter.launch" />
+
+    <!-- x y z yaw pitch roll frame_id child_frame_id period_in_ms -->
+    <!-- x y z qx qy qz qw frame_id child_frame_id  period_in_ms -->
+    <node pkg="tf" type="static_transform_publisher" name="camera_init_to_map"  args="0 0 0 1.570795   0        1.570795 /map    /camera_init 10" />
+    <node pkg="tf" type="static_transform_publisher" name="base_link_to_camera" args="0 0 0 -1.570795 -1.570795 0        /camera /base_link   10" />
+     
+    <node pkg="lego_loam" type="imageProjection"    name="imageProjection"    output="screen">
+	  	<remap from="/velodyne_points" to="$(arg sub_lidar_topic)" />
+  	</node>
+    <node pkg="lego_loam" type="featureAssociation" name="featureAssociation" output="screen"/>
+    <node pkg="lego_loam" type="mapOptmization"     name="mapOptmization"  args="$(arg lidar) save"   output="screen"/>
+    <node pkg="lego_loam" type="transformFusion"    name="transformFusion"    output="screen"/> 
+
+</launch>

@@ -1,0 +1,13 @@
+<launch>
+
+    <!-- args -->
+    <arg name="ref_lidar" value="top" />     
+    <arg name="data_lidar" value="front" />  
+    <arg name="bag_fold" value="/home/jjiao/catkin_ws/src/localization/LeGO-LOAM/LeGO-LOAM/data/yellow_20190104/8_shape" />
+
+    <node pkg="lego_loam" type="calib_initialization" name="calib_initialization"  
+		args="$(find lego_loam)/cfg/cfg_initialization.yaml 
+		$(arg bag_fold)/odom_front.bag 
+		$(arg bag_fold)/odom_tail.bag" output="screen"/>
+
+</launch>

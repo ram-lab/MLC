@@ -1,0 +1,39 @@
+# datapoint filter: https://libpointmatcher.readthedocs.io/en/latest/Datafilters/
+
+referenceDataPointsFilters:
+  - RandomSamplingDataPointsFilter:
+      prob: 1
+
+readingDataPointsFilters:
+  - RandomSamplingDataPointsFilter:
+      prob: 0.75
+
+matcher:
+  KDTreeMatcher:
+    knn: 1
+
+outlierFilters:
+  - TrimmedDistOutlierFilter:
+      ratio: 0.95
+
+errorMinimizer:
+  PointToPointErrorMinimizer
+
+transformationCheckers:
+  - CounterTransformationChecker:
+      maxIterationCount: 40
+  - DifferentialTransformationChecker:
+      minDiffRotErr: 0.001
+      minDiffTransErr: 0.01
+      smoothLength: 4 
+
+inspector:
+  VTKFileInspector:
+     baseFileName : vissteps
+     dumpDataLinks : 1
+     dumpReading : 1
+     dumpReference : 1
+
+logger:
+  FileLogger
+

@@ -1,0 +1,25 @@
+<launch>
+
+    <!-- args -->
+    <arg name="ref_lidar" value="top" />     
+    <arg name="data_lidar" value="tail" />     
+
+    <node pkg="lego_loam" type="icp_simple" name="icp_simple"  
+		args="$(arg data_lidar) 
+		$(find lego_loam)/cfg/cfg_localmap.yaml 
+		$(find lego_loam)/config/icp_corner.yaml 
+		$(find lego_loam)/config/icp_surf.yaml" output="screen"/>
+
+    <!-- ground segmentation -->
+    <!--
+    <include file="$(find detection)/launch/detection_yellow.launch" >
+		<arg name="detection_topic" value="/front/rslidar_points" />
+    </include>
+    -->
+	
+    <!-- Ros Bag -->
+    <!--
+    <node pkg="rosbag" type="play" name="rosbag" 
+        args="-clock -pause /Monster/dataset/lidar_calibration/yellow_lidar_calibration_20190104/motion_based/8_shape_filter.bag" output="screen"/> 
+	-->
+</launch>

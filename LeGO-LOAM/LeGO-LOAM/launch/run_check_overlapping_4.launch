@@ -1,0 +1,12 @@
+<launch>
+
+    <!-- args -->
+    <arg name="ref_lidar" value="top" />     
+    <arg name="data_lidar" value="tail" />     
+
+    <node pkg="lego_loam" type="check_overlapping_4" name="check_overlapping_4"  
+		args="$(arg data_lidar) 
+		$(find lego_loam)/cfg/cfg_localmap.yaml 
+		$(find lego_loam)/config/icp_surf.yaml" output="screen"/>
+
+</launch>

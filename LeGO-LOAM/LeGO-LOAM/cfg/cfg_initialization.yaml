@@ -1,0 +1,12 @@
+# calib_refinement
+bag_file:
+ - "/home/jjiao/catkin_ws/src/localization/LeGO-LOAM/LeGO-LOAM/data/yellow_20190104/8_shape/odom_top.bag"
+ - "/home/jjiao/catkin_ws/src/localization/LeGO-LOAM/LeGO-LOAM/data/yellow_20190104/8_shape/odom_front.bag"
+ - "/home/jjiao/catkin_ws/src/localization/LeGO-LOAM/LeGO-LOAM/data/yellow_20190104/8_shape/odom_tail.bag"
+
+# all tf is at lidar frame 
+tf_l2_l3_exp:
+ - [-0.9969, -0.0029, -0.0864, -2.4104]
+ - [0.0044, -0.9978, -0.0073, 0.1474]
+ - [-0.0858, -0.0053, 0.9992, -0.1185]
+ - [0, 0, 0, 1.0000]
