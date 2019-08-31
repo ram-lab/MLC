@@ -1,6 +1,9 @@
 ## MLC
 A multi-LiDAR calibration package which is written by C++ and MATLAB.
 
+## NOTE:
+The detailed documents will be released soon ^_^.
+
 ## Reference  
 To use the code, pleace cite this paper:
 ```
