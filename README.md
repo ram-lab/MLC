@@ -2,7 +2,7 @@
 A multi-LiDAR calibration package which is written by C++ and MATLAB.
 
 ## NOTE:
-The detailed documents will be released soon ^_^.
+Please check https://github.com/ram-lab/MLC/issues/1#issuecomment-658523347 for the usage, thanks.
 
 ## Reference  
 To use the code, pleace cite this paper:
